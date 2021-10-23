@@ -2,12 +2,7 @@
 Documentation       Aqui estarão presente todos os tests cases dos testes web.
 Test Setup          Abrir navegador
 Test Teardown       Fechar navegador
-Resource            ../resources/keywords/kws_webautomation.robot
-Resource            ../resources/libraries/lbs_webautomation.robot
-
-*** Variables ***
-${URL}      http://automationpractice.com/
-${BROWSER}  chrome
+Resource            ../resources/package.robot
 
 *** Test Cases ***
 Caso de Teste 01: Pesquisar produto existeste

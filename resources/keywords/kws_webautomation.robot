@@ -1,13 +1,13 @@
 ***Settings***
 Documentation   Aqui estarão presente todas as keywords dos testes web.
 
+Resource        ../package.robot
+
 *** Variables ***
-${BROWSER}  chrome
-${URL}      http://automationpractice.com/
 &{USUARIO}  
 ...         nome=Deywes
 ...         sobrenome=Rios
-...         idade=21
+...         idade=3
 ...         senha=12345
 ...         cidade=PhoenixVille
 ...         endereco=1st Avenue
@@ -20,28 +20,18 @@ ${URL}      http://automationpractice.com/
 ...         ano=2000
 
 *** Keywords ***
-#SETUP E TEARDOWN
-Abrir navegador
-    Open BROWSER        ${URL}      ${BROWSER}
-    Maximize BROWSER Window
-
-Fechar navegador
-    Set Screenshot Directory         ./evidencias/
-    Capture Page Screenshot
-    Close BROWSER
-
 Dado que o cliente está na página home do site
-    Title Should Be     My Store
-    Wait until Element is Visible       xpath=//*[@id="block_top_menu"]
+    Title Should Be     ${HOME.TITLE_PAGE_HOME}
+    Wait until Element is Visible       xpath=${HOME.HEADER_OPTIONS}
 
 Quando o cliente pesquisar pelo produto "${PRODUTO}" no campo de pesquisa
-    Input Text      id=search_query_top     ${PRODUTO}
-    Click Button   name=submit_search
+    Input Text      id=${HOME.INPUT_BUSCA}     ${PRODUTO}
+    Click Button   name=${HOME.BTN_PESQUISAR}
 
 Então o produto "${PRODUTO}" deve ser listado na página de resultado da busca
     Wait until Element is Visible   id=center_column
-    Page Should Contain Image       xpath=//*[@id="center_column"]//*[@src="${URL}img/p/7/7-home_default.jpg"]
-    Title Should Be     Search - My Store
+    Page Should Contain Image       xpath=${HOME.IMG_BLOUSE}
+    Title Should Be     ${HOME.TITLE_PAGE_SEARCH}
 
 Então deve retornar a mensagem "${MSG_ERROR}"
     Wait Until Element is Visible   xpath=//*[@id="center_column"]/p[@class="alert alert-warning"]
@@ -74,22 +64,22 @@ E clicar em "Create an account"
     Click Element   id=SubmitCreate
 
 E preencher os dados obrigatórios
-    Wait until Element is Visible   id=account-creation_form
-    Click Element   id=id_gender1
-    Input Text  id=customer_firstname  ${USUARIO.nome}
-    Input Text  id=firstname  ${USUARIO.nome}
-    Input Text  id=customer_lastname  ${USUARIO.sobrenome}
-    Input Text  id=lastname  ${USUARIO.sobrenome}
-    Input Text  id=passwd  ${USUARIO.senha}
-    Input Text  id=address1  ${USUARIO.endereco}
-    Input Text  id=city  ${USUARIO.cidade}
-    Input Text  id=postcode  ${USUARIO.cep}
-    Input Text  id=phone_mobile  ${USUARIO.telefone}
-    Input Text  id=alias  ${USUARIO.endereco_alt}
-    Select From List By Value   id=days   ${USUARIO.dia}
-    Select From List By Value   id=months   ${USUARIO.mes}
-    Select From List By Value   id=years   ${USUARIO.ano}
-    Select From List By Value   id=id_state   ${USUARIO.estado}
+    Wait until Element is Visible   id=${DATA.HEADER_ACCOUNT}
+    Click Element   id=${DATA.OPTION_SEX}
+    Input Text  id=${DATA.INPUT_COSTUMER_FIRSTNAME}  ${USUARIO.nome}
+    Input Text  id=${DATA.INPUT_FIRSTNAME}  ${USUARIO.nome}
+    Input Text  id=${DATA.INPUT_COSTUMER_LASNAME}  ${USUARIO.sobrenome}
+    Input Text  id=${DATA.INPUT_LASTNAME}  ${USUARIO.sobrenome}
+    Input Text  id=${DATA.INPUT_PASSWORD}  ${USUARIO.senha}
+    Input Text  id=${DATA.INPUT_ADDRESS}  ${USUARIO.endereco}
+    Input Text  id=${DATA.INPUT_CITY}  ${USUARIO.cidade}
+    Input Text  id=${DATA.INPUT_POSTCODE}  ${USUARIO.cep}
+    Input Text  id=${DATA.INPUT_PHONE}  ${USUARIO.telefone}
+    Input Text  id=${DATA.INPUT_ALIAS}  ${USUARIO.endereco_alt}
+    Select From List By Value   id=${DATA.SELECT_DAYS}   ${USUARIO.dia}
+    Select From List By Value   id=${DATA.SELECT_MONTHS}   ${USUARIO.mes}
+    Select From List By Value   id=${DATA.SELECT_YEARS}   ${USUARIO.ano}
+    Select From List By Value   id=${DATA.SELECT_ID_STATE}   ${USUARIO.estado}
 
 E clicar no botão de cadastro
     Click Button    id=submitAccount
