@@ -1,8 +1,18 @@
-Documentation       Aqui estarão presente todos as variáveis/elementos de informações do cliente no site automationpractice.
+Documentation       Aqui estarão presente todos as variáveis/elementos de Cadastro do site automationpractice.
 
 *** Variables ***
 ##################################################
-#                  USUARIO                       #
+#               PAGINA DE CADASTRO               #
+##################################################
+&{REG}     
+...         EMAIL=email_create
+...         OUT_OF_PAGE=center_column
+...         OK=//*[@id="create-account_form"]//div[@class="form-group form-ok"]
+...         BTN_SUBMIT_EMAIL=SubmitCreate
+...         BTN_SUBMIT=submitAccount
+
+##################################################
+#                CAMPOS DE DADOS                 #
 ##################################################
 &{DATA} 
 ...         HEADER_ACCOUNT=account-creation_form
@@ -20,4 +30,4 @@ Documentation       Aqui estarão presente todos as variáveis/elementos de info
 ...         SELECT_DAYS=days
 ...         SELECT_MONTHS=months
 ...         SELECT_YEARS=years
-...         SELECT_ID_STATE=id_state     
+...         SELECT_ID_STATE=id_state 
